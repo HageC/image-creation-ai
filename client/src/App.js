@@ -10,7 +10,7 @@ function App() {
     if (!query) {
       return;
     }
-
+    setImages([]);
     setLoading(true);
     try {
       const response = await axios.post("/create", { prompt: query });
