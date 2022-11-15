@@ -2,8 +2,16 @@ import express from "express";
 import "dotenv/config";
 import { Configuration, OpenAIApi } from "openai";
 import errorHandler from "./error-handler.js";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
 const app = express();
 const port = process.env.PORT || 5000;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+//app.use(express.static(path.resolve("./client/build")));
+
 app.use(express.json());
 
 const configuration = new Configuration({
@@ -28,6 +36,10 @@ app.post("/create", async (req, res) => {
 
   res.status(200).json({ data });
 });
+
+// app.get("*", (req,res)=>{
+//   res.sendFile(path.resolve("./client/build", "index.html"))
+// })
 
 app.use(errorHandler);
 
