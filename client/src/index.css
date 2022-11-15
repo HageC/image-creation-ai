@@ -21,7 +21,15 @@ code {
     monospace;
 }
 
+.form {
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .title {
+  padding: 0 2rem;
   font-size: 4rem;
   max-width: max-content;
   margin: 1rem auto 0 auto;

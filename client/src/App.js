@@ -16,6 +16,7 @@ function App() {
       const response = await axios.post("/create", { prompt: query });
       setImages(response.data.data);
     } catch (error) {
+      window.alert("You're sending too many requests, try again.");
       setImages([]);
     }
 
@@ -25,16 +26,18 @@ function App() {
   return (
     <div className="main">
       <h1 className="title">Create Image AI</h1>
+      <div className="form">
+        <input
+          type="text"
+          className="input"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button className="submit" onClick={handleSubmit} disabled={loading}>
+          Generate
+        </button>
+      </div>
 
-      <input
-        type="text"
-        className="input"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <button className="submit" onClick={handleSubmit} disabled={loading}>
-        Generate
-      </button>
       {loading && <Loading />}
       {images.length > 0 && <Images images={images} query={query} />}
     </div>
